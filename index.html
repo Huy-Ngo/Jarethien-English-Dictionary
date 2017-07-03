@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Jarethien dictionary</title>
+	
+	<link rel="stylesheet" type="text/css" href="lib/bootstrap4/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="lib/dataTables/jquery.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="lib/fontawesome/css/font-awesome.min.css">
+
+	<link rel="stylesheet" href="css/index.css">
+
+</head>
+<body>
+
+<!--  Modal, used to add new word
+	
+-->
+        <button class="btn btn-success md-btn" data-toggle="modal" data-target="#new-word-modal">Add new word</button>
+        		<div class="modal fade" id="new-word-modal">
+        			<div class="modal-dialog" role="document">
+        				<div class="modal-content">
+        					<div class="modal-header">
+        						
+        						<h4 class="modal-title">Add a new word</h4>
+
+        						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        							<span aria-hidden="true">&times;</span>
+        							<span class="sr-only">Close</span>
+        						</button>
+        					</div>
+        					<div class="modal-body">
+        						<form>
+        							<fieldset class="form-group">
+        								<label for="newWord">Add word</label>
+        								<input type="text" name="word" class="form-control" id="newWord" placeholder="New word">
+        							</fieldset>
+        							<fieldset class="form-group">
+										<label>to</label>
+										<div class="form-check">
+											<label class="form-check-label">
+												<input type="radio" class="form-check-input" name="dict" id="jare-eng" value="jare-eng" checked>
+												Jarethien-English Dictionary
+											</label>
+										</div>
+										<div class="form-check">
+											<label class="form-check-label">
+												<input type="radio" class="form-check-input" name="dict" id="eng-jare" value="eng-jare">
+												English-Jarethien Dictionary
+											</label>
+										</div>
+									</fieldset>
+									<fieldset class="form-group">
+										<label>Gender</label>
+										<div class="form-check">
+											<label class="form-check-label">
+												<input type="radio" class="form-check-input" name="gender" id="neuter" value="neuter" checked>
+												Neuter
+											</label>
+										</div>
+										<div class="form-check">
+											<label class="form-check-label">
+												<input type="radio" class="form-check-input" name="gender" id="masculine" value="masculine">
+												Masculine
+											</label>
+										</div>
+										<div class="form-check">
+											<label class="form-check-label">
+												<input type="radio" class="form-check-input" name="gender" id="feminine" value="feminine">
+												Feminine
+											</label>
+										</div>
+									</fieldset>
+									<fieldset class="form-group">
+										<label>Type</label>
+										<div class="form-check">
+											<label class="form-check-label">
+												<input type="radio" class="form-check-input" name="pos" id="noun" value="noun" checked>
+												Noun
+											</label>
+										</div>
+										<div class="form-check">
+											<label class="form-check-label">
+												<input type="radio" class="form-check-input" name="pos" id="verb" value="verb">
+												Verb
+											</label>
+										</div>
+										<div class="form-check">
+											<label class="form-check-label">
+												<input type="radio" class="form-check-input" name="pos" id="adjective" value="adjective">
+												Adjective
+											</label>
+										</div>
+										<div class="form-check">
+											<label class="form-check-label">
+												<input type="radio" class="form-check-input" name="pos" id="adverb" value="adverb">
+												Adverb
+											</label>
+										</div>
+										<div class="form-check">
+											<label class="form-check-label">
+												<input type="radio" class="form-check-input" name="pos" id="adposition" value="adposition">
+												Adposition
+											</label>
+										</div>
+										<div class="form-check">
+											<label class="form-check-label">
+												<input type="radio" class="form-check-input" name="pos" id="pronoun" value="pronoun">
+												Pronoun
+											</label>
+										</div>
+										<div class="form-check">
+											<label class="form-check-label">
+												<input type="radio" class="form-check-input" name="pos" id="other" value="other">
+												Other
+											</label>
+										</div>
+									</fieldset>
+        							<fieldset class="form-group">
+        								<label for="meaning">Meaning</label>
+        								<input type="text" name="meaning" class="form-control" id="meaning" placeholder="Word meaning">
+        							</fieldset>
+        						</form>
+        					</div>
+        					<div class="modal-footer">
+        						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        						<button type="button" class="btn btn-primary" id="submit-new-word">Save changes</button>
+        					</div>
+        				</div><!-- /.modal-content -->
+        			</div><!-- /.modal-dialog -->
+        		</div><!-- /.modal -->
+
+	<!-- Choose: Jarethien-English, English-Jarethien -->
+		<ul class="nav nav-tabs">
+		  <li class="nav-item">
+		    <a class="nav-link active" href="#jare-eng-tab" data-toggle="tab"> Jarethien-English Dictionary</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" href="#eng-jare-tab" data-toggle="tab"> English-Jarethien Dictionary</a>
+		  </li>
+		</ul>
+	<div class="container-fluid">
+		
+
+		<!-- Tab panes: Words container of each dict -->
+		<div class="tab-content">
+			<div class="tab-pane active" id="jare-eng-tab" role="tabpanel">
+				<table id="jare-eng-table" class="display" width="100%"></table>
+			</div>
+			<div class="tab-pane" id="eng-jare-tab" role="tabpanel">
+				<table id="eng-jare-table" class="display" width="100%"></table>
+			</div>
+		</div>
+
+	</div>
+
+
+
+	
+	<script src="lib/jquery-3.2.1.min.js" type="text/javascript"></script>
+	<script src="lib/tether.min.js" type="text/javascript"></script>
+	<script src="lib/bootstrap4/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="lib/localforage.min.js" type="text/javascript"></script>
+	<script src="lib/dataTables/jquery.dataTables.min.js" type="text/javascript"></script>
+	<script src="lib/bootbox.min.js" type="text/javascript"></script>
+
+	<script src="js/script.js" type="text/javascript"></script>	
+</body>
+</html>

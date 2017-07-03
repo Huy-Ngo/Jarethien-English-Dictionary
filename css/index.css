@@ -1,0 +1,27 @@
+.nav-item {
+	width: 50%;
+}
+
+.search-bar {
+	padding: 15px 10px;
+}
+
+.md-btn {
+	width: 100%;
+}
+
+#DataTables_Table_1 {
+	width: 100% !important;
+}
+
+i.fa {
+	color: lightgray;
+}
+
+i.edit:hover {
+	color: deepskyblue;
+}
+
+i.delete:hover {
+	color: firebrick;
+}
